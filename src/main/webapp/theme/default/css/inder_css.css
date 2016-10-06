@@ -1,0 +1,91 @@
+body{text-align:center;
+    background: #f6f6f6;   /*²»ÄÜ½¥±äµÄä¯ÀÀÆ÷*/  
+    filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#f8f8f8,endcolorstr=#cecece, gradientType=0);  /*IE*/  
+    -ms-filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#f8f8f8,endcolorstr=#cecece, gradientType=0 ); /*IE8*/  
+    background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8),to(#cecece) );
+	background: -webkit-linear-gradient(#f8f8f8, #cecece);
+	background: -moz-linear-gradient(#f8f8f8, #cecece);
+	background: -ms-linear-gradient(#f8f8f8, #cecece);
+	background: -o-linear-gradient(#f8f8f8, #cecece);
+	background: linear-gradient(#f8f8f8, #cecece);
+	width:100%;
+	position:relative;
+	
+}
+
+body,div,span,h1,h2,h3,ul,li,td,tr,p,from,font{padding:0px;margin:0px; font-family:"ËÎÌå";font-size:10px;}
+
+input{width:276px;
+	  border:1px solid #d8eae5;
+	  height:24px;
+	  text-indent:7px;
+	  color:#818181;
+	  vertical-align:middle;
+	  line-height:24px;
+	  }
+
+.page{  
+		height:600px;
+		position:relative;
+		background-image:url(../img/fplogin//bg_light.png);
+		background-position:55% -13px;
+		background-repeat:no-repeat;
+		}
+
+.tital{top:131px; position:relative}
+
+.login{height:190px;
+		width:337px;
+		position: relative;
+		display:inline-table;
+		background:#f9f9f9;
+		border:1px solid #fff;
+		top:152px;
+		-moz-box-shadow: 1px 1px 6px rgba(0, 0, 0, .2);
+		-webkit-box-shadow: 1px 1px 6px rgba(0, 0, 0, .2);
+		box-shadow: 1px 1px 6px rgba(0, 0, 0, .2)
+		
+}
+
+a{text-decoration:none;}
+
+a:hover{ text-decoration:none;}
+
+ul,li{ list-style-type:none}
+
+
+.head{height:24px;
+	  border-bottom:1px solid #e3eeec;
+	  line-height:24px;
+	  background:#fcfcfc;
+	  text-align:left;
+	  }
+	  
+.head span{ font-family:"Î¢ÈíÑÅºÚ";font-weight:bold;font-size:12px;color:#535353; position:relative;top:-3px;}
+
+.head img{margin-left:5px;margin-right:4px;}
+
+.head p {float:right; position:relative;margin-top:5px;}
+
+.main{ background-image:url(../img/fplogin//underline.png);
+       background-repeat:no-repeat;
+	   background-position:center bottom;
+	   padding-bottom:9px;}
+
+.main span{ background-image:url(../img/fplogin//bth_mormal.png);
+			 height:24px;
+			 width:54px;
+			 display:inline-table;
+			 color:#fff;
+			 text-shadow: 0 2px 1px #1d882f;
+			 font-size:12px;
+			 line-height:26px;
+			 }
+			 
+.main span:hover{background-image:url(../img/fplogin//bth_move.png);}
+
+.main span:active{background-image:url(../img/fplogin//bth_on.png);}
+
+.footer{ color:#9b9b9b; line-height:23px; font-size:11px;font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;}
+
+.footer a{color:#6fad7a;}

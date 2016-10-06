@@ -1,0 +1,33 @@
+ul { list-style:none;}
+li {  width:19px; text-align: left;}
+.Column{
+ background:url("../img/chart/Column.jpg") no-repeat left top;
+  margin:0;
+ padding:0 0 0 4px;
+      text-decoration:none;
+      cursor:pointer;
+      }
+      
+     .pie{
+      background:url("../img/chart/pie.jpg") no-repeat left top;
+      margin:0;
+      padding:0 0 0 4px;
+      text-decoration:none;
+      cursor:pointer;
+      }  
+      .linear{
+      background:url("../img/chart/linear.JPG") no-repeat left top;
+      margin:0;
+      padding:0 0 0 4px;
+      text-decoration:none;
+      cursor:pointer;
+      }
+     .horizontalBar{
+      background:url("../img/chart/horColumn.jpg") no-repeat left top;
+      margin:0;
+      padding:0 0 0 4px;
+      text-decoration:none;
+      cursor:pointer;
+      }
+      
+      

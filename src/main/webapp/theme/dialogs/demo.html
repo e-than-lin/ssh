@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<script language="javascript" src="jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="jquery.plugins.js"></script>
+		<script type="text/javascript" src="jquery.flex.alert.js"></script>
+		<script language="javascript">
+			$(document).ready(function(){
+				$.flexalert.show("提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！提示内容！");
+			});
+			
+			function showDialog(){
+				$.flexalert.show("提示内容！", {parent : "top", title : "title", type : "confirm", onok : function(){alert("ok");}, oncancel : function(){alert("cancel");}, okLabel : "OK", cancelLabel : "Cancel", draggable : false, timeout : 3});
+			}
+			
+			lastScrollY=0;
+			function movediv(){
+				diffY=document.body.scrollTop;
+				percent=.1*(diffY-lastScrollY);
+				if(percent>0){
+					percent=Math.ceil(percent);
+				}
+				else{
+					percent=Math.floor(percent);
+				}
+			document.all.MovedDiv.style.pixelTop+=percent;
+			lastScrollY=lastScrollY+percent;
+			}
+			window.setInterval("movediv()",10);
+		</script>
+	</head>
+	
+	<div id="MovedDiv" style="left:25px;top:20px;position:absolute;" onClick="showDialog()"><a href="javascript:void(0)">click me</a></div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</html>

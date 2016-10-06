@@ -1,0 +1,90 @@
+
+
+            .point {
+                position:absolute;
+                width:2px; height:2px; overflow:hidden;
+                background:#6A6AFF;
+               
+            }
+            
+            .point1 {
+                position:absolute;
+                width:2px; height:2px; overflow:hidden;
+                background:#FF5151;
+               
+            }
+ 
+.twfbutton{
+  display: inline-block;
+ width: 34px;
+ height: 34px;
+ padding: 1px;
+ border-radius: 10%;
+ border-width: 3px;
+ border-style: solid;
+ color: #ba9d5e;
+ text-shadow: 0 1px 0 #f5e0ad;
+ border-color: #dcc999;
+ background-color: #f0cd78;
+	background-repeat:no-repeat;
+	 -webkit-transition: all 0.4s linear;
+ -moz-transition: all 0.4s linear;
+ -o-transition: all 0.4s linear;
+ -ms-transition: all 0.4s linear;
+ transition: all 0.4s linear;
+}
+
+
+
+
+.twfbutton1 {
+ display: inline-block;
+ width: 34px;
+ height: 34px;
+ padding: 1px;
+ border-radius: 10%;
+ border-width: 3px;
+ border-style: solid;
+  color: #b468a2;
+ text-shadow: 0 1px 0 #e8acd8;
+ border-color: #d8abcd;
+ background-color: #dd91cb;
+	background-repeat:no-repeat;
+	 -webkit-transition: all 0.4s linear;
+ -moz-transition: all 0.4s linear;
+ -o-transition: all 0.4s linear;
+ -ms-transition: all 0.4s linear;
+ transition: all 0.4s linear;
+}
+
+.twfbutton2 {
+ display: inline-block;
+ width: 34px;
+ height: 34px;
+ padding: 1px;
+ border-radius: 10%;
+ border-width: 3px;
+ border-style: solid;
+  color: #5e9eb4;
+ text-shadow: 0 1px 0 #adddec;
+ border-color: #a2cfde;
+ background-color: #7ec9e3;
+	background-repeat:no-repeat;
+	
+}
+
+.twfbutton3 {
+ display: inline-block;
+ width: 34px;
+ height: 34px;
+ padding: 1px;
+ border-radius: 10%;
+ border-width: 3px;
+ border-style: solid;
+ color: #b12a55;
+ text-shadow: 0 1px 0 #ff95b7;
+ border-color: #ba335c;
+ background-color: #ea5180;
+	background-repeat:no-repeat;
+	
+}

@@ -1,4 +1,4 @@
-package com.ethan.action.com.ethan.domain;
+package com.ethan.domain;
 
 /**
  * Created by ETHAN on 2016/9/22.

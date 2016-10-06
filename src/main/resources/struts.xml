@@ -28,7 +28,20 @@
     <constant name="struts.dispatcher.parametersWorkaround" value="false" />
 
     <package name="basePackage" extends="struts-default">
-
-    </package>
-
+		<action class="tCategoryAction" method="{1}" name="cate_*">
+					<result name="categoryTree">categoryTree.jsp</result>
+					<result name="cTree">cTree.jsp</result>
+					<result name="categoryList">categoryList.jsp</result>
+					<result name="pageAdd">editCategory.jsp</result>
+					<result name="addResult">editCategory.jsp</result>
+					<result name="updResult">editCategory.jsp</result>
+					<result name="getCategoryById">editCategory.jsp</result>
+					<result name="moveCategorys">moveCategory.jsp</result>
+					<result name="moreTree">moreCategoryTree.jsp</result>
+				    <result name="aj">aj.jsp</result>
+				    <result name="manage">categoryManage.jsp </result>
+				    <result name="picker">categoryPicker.jsp </result>
+				    <result name="categorySelect" type="freemarker">categoryOptions.ftl</result>
+		</action>
+	</package>
 </struts>

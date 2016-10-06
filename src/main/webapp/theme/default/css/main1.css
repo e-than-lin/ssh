@@ -1,0 +1,67 @@
+
+/*我的桌页列表标题*/
+TABLE.main_table1{
+BACKGROUND-COLOR: #ffffff;
+   border-left:1px solid #B0CAE3;
+	border-top:1px solid #B0CAE3;
+	border-right:1px solid #B0CAE3;
+	border-bottom:1px solid #B0CAE3;
+	/*border:1px solid #B0CAE3;
+	margin-top:0px;*/
+	width:100%;
+}
+
+/*我的桌页列表外框*/
+TABLE.main_table2{
+BACKGROUND-COLOR: #ffffff;
+   border-left:3px solid #B0CAE3;
+	border-top:0px solid #B0CAE3;
+	border-right:5px solid #B0CAE3;
+	border-bottom:2px solid #B0CAE3;
+	/*border:1px solid #B0CAE3;
+	margin-top:0px;*/
+	width:100%;
+}
+
+TABLE.main_table2 th {
+	/*BACKGROUND-COLOR:#F1F1F1;*/
+	padding:0px 4px 0px 4px;
+	border:0px solid #DDD;
+	margin-top:0px;
+	height:22px;
+	
+/*	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#41A6E7,endColorStr=#B2E9FE,direction=1);
+	*/
+   FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#FEFEFE,endColorStr=#EFF0EF);
+	
+   
+}
+
+
+/*我的桌页列表标题*/
+TABLE.main_table {
+	BACKGROUND-COLOR: #ffffff;
+	border:0px solid #cccccc;
+	margin-top:0px;
+	width:100%;
+}
+
+/*我的桌页列表标题*/
+TABLE.main_table th {
+	/*BACKGROUND-COLOR:#F1F1F1;*/
+	padding:0px 4px 0px 4px;
+	border:0px solid #DDD;
+	margin-top:0px;
+	height:22px;
+	COLOR: #000000;
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#41A6E7,endColorStr=#B2E9FE);
+	/*
+   FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#618EB3,endColorStr=#233C5D);
+	*/
+   
+}
+
+
+main_COLOR{
+ COLOR: #000000;
+}
