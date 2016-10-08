@@ -1,37 +1,33 @@
-﻿package com.ethan.action;
-
-
-import java.io.IOException;
+package com.ethan.action;				
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.ParentPackage;
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.convention.annotation.Action;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.ethan.domain.Category;
 import com.ethan.service.CategoryServices;
-import com.opensymphony.xwork2.ActionSupport;
 import com.utils.listPage.AppConfig;
 import com.utils.listPage.IPagination;
 import com.utils.listPage.PaginationInfo;
 
-@ParentPackage("basePackage")
-@Namespace("/")
-@Component("tCategoryAction")
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 @Scope("prototype")
+@Component("tCategoryAction")
 public class CategoryAction extends BaseAction{
+	
+	private static final Logger logger = LogManager.getLogger(CategoryAction.class);
+	
 	protected IPagination listPage;// 分页列表
 	protected PaginationInfo pageInfo = new PaginationInfo();// 分页对象
 	private Category category;// 分类对象
@@ -122,7 +118,7 @@ public class CategoryAction extends BaseAction{
 		}
 		else
 		{
-		 category.setOrgId(this.getOAUser());
+		 category.setOrgId(20000002);
 		}
 		category.setCreator(this.getOAUser());
 		Date date=new Date();
@@ -132,9 +128,11 @@ public class CategoryAction extends BaseAction{
 		boolean flag = categoryServicesImp.addCategory(category);
 		if (flag) {
 			msg = "保存成功！";
+			
 		} else {
 			msg = "保存失败！";
 		}
+		logger.info(msg);
 		category = new Category();
 		category.setParentId(parentId);
 		if(isDefaultOrgId==1)
@@ -154,6 +152,9 @@ public class CategoryAction extends BaseAction{
 	 * @return String
 	 */
 	public String updCategory() {
+
+
+	    
 		// 获取所属应用的数据
 		if(category==null){
 			category = new Category();
@@ -180,6 +181,7 @@ public class CategoryAction extends BaseAction{
 		} else {
 			msg = "保存失败！";
 		}
+		logger.info(msg);
 		category = new Category();
 		category.setParentId(parentId);
 		if(isDefaultOrgId==1)
@@ -213,6 +215,7 @@ public class CategoryAction extends BaseAction{
 		}catch (Exception e) {
 			msg = "删除失败！";
 		}
+		logger.info(msg);
 		if(isDefaultOrgId==1)
 		{
 			return searchTemplateByParentId();
@@ -237,7 +240,6 @@ public class CategoryAction extends BaseAction{
 		}
 		if(category!=null){			
 			parentId = category.getParentId();
-			
 		}
 		category.setOrgId(this.getOAUser());
 		listPage = categoryServicesImp.getCategorysByParentId(pageInfo,
@@ -245,7 +247,6 @@ public class CategoryAction extends BaseAction{
 		category.setParentId(parentId);
 		
 		this.orgAdmin=this.getOAUser()==10000038;
-		
 		return "categoryList";
 	}
 	
@@ -380,7 +381,7 @@ public class CategoryAction extends BaseAction{
 	 */
 	public String getCategorys() {
 		
-		categoryList = categoryServicesImp.getAllCategory(this.getOAUser());
+		categoryList = categoryServicesImp.getAllCategory(20000002);
 		if(moveType==2){
 			return "moreTree";
 		}

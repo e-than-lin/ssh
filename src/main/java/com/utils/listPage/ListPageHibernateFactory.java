@@ -8,8 +8,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
-import org.springframework.orm.hibernate5.HibernateCallback;
-import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.orm.hibernate4.HibernateCallback;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 
 public class ListPageHibernateFactory<T> extends ListPageFactory<T> {
 
@@ -84,14 +84,7 @@ public class ListPageHibernateFactory<T> extends ListPageFactory<T> {
 	}
     }
 
-    public static void main(String[] args) {
-	String ss = "select  distinct t.type_id ,distinct t.name, t.company_id  from CL_FL_IC_REGISTER t";
-	System.out.println(dealCountHQL(ss));
-	String ss2 = "select distinct t.type_id from CL_FL_IC_REGISTER t";
-	System.out.println(dealCountHQL(ss2));
-	String hs = "from RegRecord ";
-	System.out.println(dealCountHQL(hs));
-    }
+    
 
    
     public static String dealCountHQL(String hql) {

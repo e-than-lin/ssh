@@ -103,7 +103,7 @@ public class ListPageSpringJdbcFactory<T>  extends ListPageFactory<T> {
 			if (log.isInfoEnabled()) {
 				log.info("TotalNumOfElements SQL= " + getCountSQL(querySQL));
 			}
-			return (int) simpleJdbcTemplate.queryForMap(getCountSQL(querySQL),parmValues).get("rowcount");
+			return (Integer) simpleJdbcTemplate.queryForMap(getCountSQL(querySQL),parmValues).get("rowcount");
 		}
 
 		private List<T> getPageElements(String paginationSQL) {
@@ -153,7 +153,7 @@ public class ListPageSpringJdbcFactory<T>  extends ListPageFactory<T> {
 			if (log.isInfoEnabled()) {
 				log.info("TotalNumOfElements SQL= " + getCountSQL(querySQL));
 			}
-			return (int) jt.queryForMap(getCountSQL(querySQL)).get("rowcount");
+			return  (Integer) jt.queryForMap(getCountSQL(querySQL)).get("rowcount");
 		}
 
 	
@@ -269,7 +269,7 @@ public class ListPageSpringJdbcFactory<T>  extends ListPageFactory<T> {
 			}
 			
 			String SQL=getCountSQL(querySQL);
-			int count=(int) simpleJdbcTemplate.queryForMap(SQL,parmValues).get("rowcount");
+			int count= (Integer) simpleJdbcTemplate.queryForMap(SQL,parmValues).get("rowcount");
 			return count;
 		}
 

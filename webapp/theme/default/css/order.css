@@ -1,0 +1,57 @@
+.HbianXLbian {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 0px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #ababab;
+	border-right-color: #ababab;
+	border-bottom-color: #1c5e8e;
+	border-left-color: #ababab;
+}
+.XLbian {
+	border-bottom-width: 0px;
+	border-bottom-style: none;
+	border-bottom-color: #1c5e8e;
+}
+.SLbian3Hbian {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #1c5e8e;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #ababab;
+	border-bottom-color: #ababab;
+	border-left-color: #ababab;
+}
+.YSHbian {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #ababab;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #000000;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #ababab;
+}
+.YHbian {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #ababab;
+}
+.H4bian {
+	border: 1px solid #ababab;
+}
+.SHbian {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #ababab;
+}

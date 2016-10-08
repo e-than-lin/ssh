@@ -1,33 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd" >
 <struts>
-
-    <!-- 指定由spring负责action对象的创建 -->
-    <constant name="struts.objectFactory" value="spring" />
-    <!-- 所有匹配*.action的请求都由struts2处理 -->
-    <constant name="struts.action.extension" value="action" />
-    <!-- 是否启用开发模式 -->
-    <constant name="struts.devMode" value="true" />
-    <!-- struts配置文件改动后，是否重新加载 -->
-    <constant name="struts.configuration.xml.reload" value="true" />
-    <!-- 设置浏览器是否缓存静态内容 -->
-    <constant name="struts.serve.static.browserCache" value="false" />
-    <!-- 请求参数的编码方式 -->
-    <constant name="struts.i18n.encoding" value="utf-8" />
-    <!-- 每次HTTP请求系统都重新加载资源文件，有助于开发 -->
-    <constant name="struts.i18n.reload" value="true" />
-    <!-- 文件上传最大值 -->
-    <constant name="struts.multipart.maxSize" value="104857600" />
-    <!-- 让struts2支持动态方法调用 -->
-    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
-    <!-- Action名称中是否还是用斜线 -->
-    <constant name="struts.enable.SlashesInActionNames" value="false" />
-    <!-- 允许标签中使用表达式语法 -->
-    <constant name="struts.tag.altSyntax" value="true" />
-    <!-- 对于WebLogic,Orion,OC4J此属性应该设置成true -->
-    <constant name="struts.dispatcher.parametersWorkaround" value="false" />
-
-    <package name="basePackage" extends="struts-default">
+	<!--
+		注意每添加一个struts文件必须在这里include进去才能生效. 本质是已经在加载的时候加载，注意要分模块include，便于管理
+	-->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 设置上传文档的最大值为50M -->
+	<constant name= "struts.multipart.maxSize" value="52428800" />
+	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
+	<!-- 设置浏览器是否缓存静态内容，默认值为true，开发阶段最好false -->
+	<constant name="struts.serve.static.browserCache " value="false"/>
+	<!-- 当struts的配置文件修改后，系统是否自动重新加载该文件，默认值为false，开发阶段最好true -->
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	<!-- 开发模式下设为true，这样可以打印出更详细的错误信息 -->
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.dispatcher.parametersWorkaround" value="true"/>
+	 <package name="categoryPackage"  extends="struts-default" >
 		<action class="tCategoryAction" method="{1}" name="cate_*">
 					<result name="categoryTree">categoryTree.jsp</result>
 					<result name="cTree">cTree.jsp</result>
@@ -44,4 +33,5 @@
 				    <result name="categorySelect" type="freemarker">categoryOptions.ftl</result>
 		</action>
 	</package>
+	
 </struts>

@@ -1,0 +1,15 @@
+﻿function check() {
+    var user = document.all.j_username.value;
+    if (user == null || user == "") {
+        alert("用户名不能为空！");
+        document.all.j_username.focus();
+        return false;
+    }
+}
+
+function guest() {
+    var loginForm = document.forms[0];
+    loginForm.j_username.value = "guest";
+    loginForm.j_password.value = "111111";
+    loginForm.submit();
+}

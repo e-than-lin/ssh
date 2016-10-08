@@ -1,0 +1,32 @@
+<html>
+<head>
+<script language="javascript" src="jquery-1.4.2.min.js"></script>
+<script>
+lastScrollY=0;
+function movediv(){
+	diffY=document.body.scrollTop;
+	percent=.1*(diffY-lastScrollY);
+	if(percent>0){
+		percent=Math.ceil(percent);
+	}
+	else{
+		percent=Math.floor(percent);
+	}
+	document.all.MovedDiv.style.pixelTop+=percent;
+	lastScrollY=lastScrollY+percent;
+}
+window.setInterval("movediv()",10);
+</script>
+</head>
+
+<body>
+<div id="MovedDiv" style="left:25px;top:20px;position:absolute;">
+<iframe src="demo2.html" width=1200px height=400px"></iframe>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

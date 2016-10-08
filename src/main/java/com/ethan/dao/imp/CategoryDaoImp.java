@@ -5,12 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.springframework.orm.hibernate5.HibernateCallback;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.orm.hibernate4.HibernateCallback;
+import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Service;
 
 import com.ethan.dao.CategoryDao;
@@ -43,7 +43,7 @@ public class CategoryDaoImp extends HibernateDaoSupport implements CategoryDao {
 		try {
 			getHibernateTemplate().execute(new HibernateCallback() {
 				public Object doInHibernate(Session session) {
-					session.beginTransaction();
+					//session.beginTransaction();
 					Query query = session
 							.createQuery("from Category c where c.id in (:id) ");
 
@@ -53,7 +53,7 @@ public class CategoryDaoImp extends HibernateDaoSupport implements CategoryDao {
 					for (Category category : list) {
 						session.delete(category);
 					}
-					session.getTransaction().commit();
+					//session.getTransaction().commit();
 
 					return true;
 
@@ -89,7 +89,7 @@ public class CategoryDaoImp extends HibernateDaoSupport implements CategoryDao {
 		try {
 			getHibernateTemplate().execute(new HibernateCallback() {
 				public Object doInHibernate(Session session) {
-					session.beginTransaction();
+					//session.beginTransaction();
 					Query query = session
 							.createQuery("from Category c where c.parentId in (:id) ");
 
@@ -99,7 +99,7 @@ public class CategoryDaoImp extends HibernateDaoSupport implements CategoryDao {
 					for (Category category : list) {
 						session.delete(category);
 					}
-					session.getTransaction().commit();
+					//session.getTransaction().commit();
 
 					return true;
 
@@ -155,16 +155,12 @@ public class CategoryDaoImp extends HibernateDaoSupport implements CategoryDao {
 			hql2.append(" from Category c where 1=1 ");
 		if(category!=null)
 		{  
-			
-			hql2.append(" and c.orgId = ? ");
-			list.add(category.getOrgId());
 			if(category.getParentId()!=null&&!"".equals(category.getParentId()))
 			{
 				
 				hql2.append(" and c.parentId=? ");
 				list.add(category.getParentId());
 			}
-			
 			if(category.getName()!=null&&!"".equals(category.getName()))
 			{
 				hql2.append(" and c.name like ? ");
@@ -193,11 +189,8 @@ public class CategoryDaoImp extends HibernateDaoSupport implements CategoryDao {
 		}
 		try {
 			HibernateTemplate ht=this.getHibernateTemplate();
-			ListPageFactory<Category> listPageFactory = 
-					new ListPageHibernateFactory<Category>(ht, hql.toString()+hql2.toString(),hql2.toString(),obj);//
-			IPagination<Category> lists = (IPagination<Category>) listPageFactory
-					.getPaginationInstance(pageInfo.getPageNo(), pageInfo
-							.getPageSize());
+			ListPageFactory<Category> listPageFactory =new ListPageHibernateFactory<Category>(ht, hql.toString()+hql2.toString(),hql2.toString(),obj);//
+			IPagination<Category> lists = (IPagination<Category>) listPageFactory.getPaginationInstance(pageInfo.getPageNo(), pageInfo.getPageSize());
 			return lists;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -307,7 +300,7 @@ public class CategoryDaoImp extends HibernateDaoSupport implements CategoryDao {
 		try {
 			getHibernateTemplate().execute(new HibernateCallback() {
 				public Object doInHibernate(Session session) {
-					session.beginTransaction();
+					//session.beginTransaction();
 					Query query = session.createQuery("from Category c where c.orgId =:orgId ");
 					//query.setParameter("orgId", orgId);
 					query.setInteger(0, orgId);
@@ -316,7 +309,7 @@ public class CategoryDaoImp extends HibernateDaoSupport implements CategoryDao {
 					for (Category category : list) {
 						session.delete(category);
 					}
-					session.getTransaction().commit();
+					//session.getTransaction().commit();
 
 					return true;
 

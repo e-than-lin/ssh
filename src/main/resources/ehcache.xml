@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ehcache>
+	<diskStore path="java.io.tmpdir" />
+	<!-- 
+		eternal:元素是否永久的;
+		MemoryStoreEvictionPolicy:default is LRU
+	-->
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="300" timeToLiveSeconds="180" overflowToDisk="true"
+		diskPersistent="false" diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LRU" />
+	<cache name="SimplePageCachingFilter" maxElementsInMemory="20000"
+        maxElementsOnDisk="1000" eternal="true" overflowToDisk="true"
+        memoryStoreEvictionPolicy="LFU" />
+</ehcache>

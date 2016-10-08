@@ -1,0 +1,269 @@
+﻿var manuallogin_url = "manuallogin.jsp";
+var simulate_url = "simulate";
+var rememberInput_url = "simulatesession.jsp";
+var debug = false;
+
+// 最大化窗口的预设大小
+var preWidth = screen.availWidth;
+var preHeight = screen.availHeight;
+var preLeft = screen.availLeft;
+var preTop = screen.availTop;
+
+
+// 错误处理
+var resourceNotFoundKey = "系统未找到指定的资源";
+var resourceNotFoundMessage = "您访问的系统无法连接，请联系系统管理员！";
+
+var noRightkey = "没有权限";
+var noRightMessage = "您的浏览器安全级别设置过高，无法访问该系统，请联系系统管理员！";
+
+var errorMessages = new Array(resourceNotFoundMessage, noRightMessage);
+var errorKeys = new Array(resourceNotFoundKey, noRightkey);
+
+/*
+* 由登录用户名、密码和登录form相关信息生成查询字符串
+* 当guestParam为空时，不使用formParam生成查询字符串
+*/
+function createQueryString(username, password, formParam, guestParam) {
+    // TODO 来宾登录的参数需要更高的扩展性
+    var queryString = formParam.usernameInput + "=" + username +
+                      "&" + formParam.passwordInput + "=" + password;
+    if (guestParam == "") {
+        //来宾登陆的配置参数为空
+        queryString = queryString + getQueryString();
+        var formHiddenValue = getLoginFormHiddenValue(formParam.loginURL);
+        if (formHiddenValue != "") {
+            queryString = queryString + "&" + formHiddenValue;
+        }
+    } else {
+        queryString = queryString + "&" + guestParam;
+    }
+
+    queryString = URLEncoding(queryString);
+
+    if (debug) {
+        alert("queryString: " + queryString);
+    }
+    return  queryString;
+}
+;
+/*
+* name: 	autoLogin
+* fucntion:	simulate login
+* param:	username (String) - username for login
+*			password (String)- password for login
+*			originalURL (String) - the original URL the user request
+*			autoLogin (boolean) - "false" will  need update the password and username to cas,"true" does'nt need
+*			userID (String) - userID of the current protal user
+*			systemName (String) - systemName the user request
+* return:	Html
+* refer:	Microsoft.XMLHTTP
+*/
+function autoLogin(username, password, originalURL, formParam, autoLogin) {
+
+    var queryString = createQueryString(username, password, formParam, "");
+
+    // perform the simulate  login
+    var response = getResponse(formParam.loginURL, queryString, "post", false, username, password);
+    if (debug) {
+        alert("response: " + response);
+    }
+
+    if (response == true) {
+        // for the activex login system
+        return;
+    }
+    // get the login result by analyse the reponse (successful or unsuccessful)
+    var result = analyseLoginResult(response);
+    if (debug) {
+        alert("result: " + result);
+    }
+
+    if (result == true) {
+        // login successful
+
+        if (debug) {
+            alert("go to: " + originalURL);
+        }
+        originalURL = constructService(originalURL, response, username, password);
+        if (debug) {
+            alert("originalURL: " + originalURL);
+        }
+        openFullScreenWindow(originalURL);
+        if (!autoLogin) {
+            // update the user info to cas
+            if (debug) {
+                alert("update auth info");
+            }
+            updateBizSystem(username, password);
+        }
+        window.close();
+    } else {
+        // redierect to the manual login page
+        // alert("go to manual login ");
+        if (!autoLogin) {
+            var form = document.forms[0];
+            //form.username.value = "";
+            document.forms[0].username.focus();
+            form.password.value = "";
+            document.all.progressmessage.style.visibility = "hidden";
+            displayLoginFailureMessage(username, formParam.systemName);
+        } else {
+            window.location.href = manuallogin_url + "?username=" + username;
+        }
+    }
+
+}
+/*
+* name: 	getResponseText
+* fucntion:	sends an HTTP request to the server and receives a response
+* param:	url (String) - requested URL. This must be an absolute URL, such as "http://Myserver/Mypath/Myfile.asp".
+*			queryString (String)- query string
+*			method (String) - http method used to open the connection
+*			isAsyn (boolean) - whether asyn request will be sent (no return value when send asyn request)
+* return:	Html
+* refer:	Microsoft.XMLHTTP
+*/
+function getResponseText(url, queryString, method, isAsyn) {
+    var xmlObject = new ActiveXObject("Microsoft.XMLHTTP");
+    var post = queryString;
+    xmlObject.open(method, url, isAsyn);
+    xmlObject.setrequestheader("content-length", post.length);
+    xmlObject.setrequestheader("content-type", "application/x-www-form-urlencoded");
+    xmlObject.send(post);
+
+    if (!isAsyn) {
+        // synchronous request will get the return value
+        // var str = bytes2BSTR(xmlObject.responseBody);
+        // var str = xmlObject.responseText;
+        return encodingResponse(xmlObject);
+    }
+}
+
+/**
+* 有些系统在登录验证的时候需要从cooke中读一些信息，因此我们需要先访问一下该系统，创建cooke，
+* 然后再登录验证该系统。
+*/
+function setCookieAndGetResponseText(url, queryString, method, isAsyn){
+    getResponseText(url,"","get",false);
+    return getResponseText(url, queryString, method, isAsyn);
+}
+/*
+* open the window for the ActriveX Control
+*/
+function getResponseWindow(url, queryString, method, isAsyn, username, password) {
+    if (debug) {
+        alert("redirect to the " + url + "?" + queryString);
+    }
+    window.location.href = url + "?" + queryString;
+    fullScreen();
+    // put the username and password to the session
+    if (debug) {
+        alert("put the username and password to the session");
+    }
+
+    remeberInput(username, password);
+    return true;
+}
+
+/*
+* 来宾登录新打开一个最大化窗口，然后关闭原窗口
+*/
+function guestLogin(url, queryString) {
+    if (queryString != "") {
+        url = url + "?" + queryString;
+    }
+    if (debug) {
+        alert("redirect to the " + url);
+    }
+    openFullScreenWindow(url);
+    window.close();
+    return true;
+}
+
+
+/*
+* update the biz system and remember the user username nad the password the user input
+*/
+function updateBizSystem(username, password) {
+    if (debug) {
+        alert("update biz userinfo\n username: " + username + " \npassword: " + password);
+    }
+    var url = simulate_url + "?username=" + username + "&password=" + password  ;
+    getResponseText(url, "", "get", true);
+}
+
+/*
+* remember the user username nad the password the user input
+*/
+function remeberInput(username, password) {
+    var url = rememberInput_url + "?username=" + username + "&password=" + password  ;
+    getResponseText(url, "", "get", true);
+}
+
+/*
+* get the last match result
+*/
+function getMatchString(context, reg) {
+    var matchResult = context.match(reg);
+    if (matchResult != null) {
+        return matchResult[matchResult.length - 1].replace(/\//g, '%2F').
+                replace(/\+/g, '%2B').replace(/=/g, '%3D');
+    } else {
+        return '';
+    }
+}
+
+// Function Description:  去除字符串的首尾的空格
+String.prototype.trim = function() {
+    return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+//最大化当前窗口
+function fullScreen() {
+    window.resizeTo(preWidth, preHeight);
+    window.moveTo(preLeft, preTop);
+}
+
+function openFullScreenWindow(originalURL) {
+    window.open(originalURL, "", "toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,copyhistory=yes,width=" + preWidth + ",height=" + preHeight + ",left=" + preLeft + ",top=" + preTop);
+}
+
+function replaceToken(arr, orignal) {
+    var regExp ;
+    for (i = 0; i < arr.length; i++) {
+        regExp = new RegExp("\\{" + i + "\\}", "g");
+        orignal = orignal.replace(regExp, arr[i]);
+    }
+    return orignal;
+}
+/*
+*name: handlerErrors
+*
+*function: hander error
+*
+*param:
+*		aMessage - The text of the error message
+*		aLine The - line number where the error occurred
+*		aURL - The URL of the document containing the error
+
+* return:
+* refer:
+*/
+function handlerErrors(aMessage, aURL, aLine) {
+    for (i = 0; i < errorKeys.length; i++) {
+        if (aMessage.search(errorKeys[i]) != -1) {
+            aMessage = errorMessages[i]
+            break;
+        }
+    }
+    if (aMessage != '') {
+        alert(aMessage);
+    }
+    window.close();
+    return true;
+}
+
+window.onerror = handlerErrors;
+
+

@@ -1,0 +1,110 @@
+html,BODY {
+	MARGIN: 0px 0px 0px 0px;
+	padding: 0;
+	background-color:#d7d7d7;	
+	height:100%;
+	border:none;
+	width:100%;
+} 
+
+.menu {
+	
+	border-right: 0px solid #000;
+	font-family: Tahoma, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+}
+
+
+
+.menu  div span span{
+                display: block;
+                padding: 10px 5px 10px 0.5em;
+                border-right: 10px solid #00A600;
+                border-left: 10px solid #00A600;
+                background:-moz-linear-gradient(left,#e8e8e8,#fff);
+				background:-webkit-gradient(linear,0 50%,100% 50%,from(#e8e8e8),to(#fff));
+				background:-webkit-linear-gradient(left,#e8e8e8,#fff);
+				background:-o-linear-gradient(left,#e8e8e8,#fff); 
+                color: #fff;
+                font-weight:100;
+                text-decoration: none;   
+                cursor:pointer;
+                 background:#00A600;
+                font-weight: bold;
+                }
+                
+
+.menu div div span{
+              	
+                display: block;
+                padding: 0px 0px 0px 0em;
+                border-left: 2px solid #00A600;
+                border-right: 1px solid #00A600;
+                color:#fff;
+                text-decoration: none;
+                 cursor:pointer;
+                  background: #e6e6e6;
+                 font-weight: bold;
+}
+.menu div div span span{
+
+       padding: 6px 5px 6px 13px;
+	  border-left: 0px solid #68a311;
+	  border-right: 0px solid #68a311;
+	  font-weight: bold;
+	  background:#ECFEE8;
+	  border-top:1px solid #68a311;
+	  border-bottom:1px solid #68a311;
+	  color: #525250;
+	    cursor:pointer;
+	  text-decoration: none;
+	   cursor:pointer;
+	 
+}
+
+
+
+
+.menu div div div span{
+               font-weight: bold;
+                display: block;
+                padding: 0px 0px 0px 0em;
+                border-left: 3px solid #00A600;
+                border-right: 2px solid #00A600;
+                 border-top:0px solid #dedede;
+	  			border-bottom:0px solid #ebebeb;
+                color: #fff;
+                text-decoration: none;
+                 cursor:pointer;
+               
+}
+
+.menu div div div span span{
+    font-weight: bold;
+      padding: 5px 5px 5px 22px;
+	  border-left: 0px solid #c0e589;
+	  border-right: 0px solid #c5dc90;
+	  background: #fff;
+	  color: #525250;
+	  cursor:pointer;
+	  text-decoration: none;
+	   cursor:pointer;
+	 
+}
+
+
+
+
+
+
+img{
+	border:0 none skyblue;
+}
+
+
+a {
+blr:expression(this.onFocus=this.setAttribute("hideFocus","true"));
+ outline:none;
+}

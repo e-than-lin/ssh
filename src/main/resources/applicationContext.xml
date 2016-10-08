@@ -44,7 +44,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
     </bean>
 
     <!-- 配置hibernate session工厂 -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="hibernateProperties">
             <props>
@@ -54,22 +54,37 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
             </props>
         </property>
-
-        <!-- 自动扫描注解方式配置的hibernate类文件 -->
+        <!-- 自动扫描注解方式配置的hibernate类文件-->
         <property name="packagesToScan">
             <list>
                 <value>com.ethan.domain</value>
 				<value>com.utils.listPage</value>
             </list>
-        </property>
+        </property> 
     </bean>
 
     <!-- 配置事务管理器 -->
-    <bean name="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    <bean name="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+	<!--
+	<tx:annotation-driven transaction-manager="transactionManager" />  
+	-->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+	        <tx:attributes>
+	            <tx:method name="add*" propagation="REQUIRED"/>
+	            <tx:method name="del*" propagation="REQUIRED"/>
+	            <tx:method name="upd*" propagation="REQUIRED"/>
+				<tx:method name="batchDel*" propagation="REQUIRED"/>
+	            <!--<tx:method name="*" read-only="true" />-->
+	            <tx:method name="*" propagation="REQUIRED"/>
+	        </tx:attributes>
+	</tx:advice>
 
-    <!-- 注解方式配置事物 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
-
+	<aop:config>
+		<aop:pointcut id="interceptorPointCuts"
+		expression="execution(* com.ethan.dao.*.*(..))"/>
+		<aop:advisor advice-ref="transactionAdvice"
+		pointcut-ref="interceptorPointCuts"/>
+	</aop:config>
 </beans>

@@ -3,7 +3,9 @@ package com.ethan.service.imp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.ethan.dao.CategoryDao;
@@ -201,25 +203,24 @@ public class CategoryServicesImp implements CategoryServices {
 
 	@Override
 	public boolean moveCategory(String id, String pid,int useid) {
-	Category category =	categoryDaoImp.getCategoryById(id);
-	category.setParentId(pid);
-	category.setUpdUser(useid);
-	category.setUpdtime(new Date());
-	if(category.getParentId()!=null && !category.equals(""))
-	{
-		Category pCategory=categoryDaoImp.getCategoryById(category.getParentId());
-		if(pCategory.getAllParentId()!=null && !pCategory.getAllParentId().equals(""))
+		Category category =	categoryDaoImp.getCategoryById(id);
+		category.setParentId(pid);
+		category.setUpdUser(useid);
+		category.setUpdtime(new Date());
+		if(category.getParentId()!=null && !category.equals(""))
 		{
-			category.setAllParentId(pCategory.getAllParentId()+","+pCategory.getId());
-		}
-		else
-		{
-			category.setAllParentId(pCategory.getId());
+			Category pCategory=categoryDaoImp.getCategoryById(category.getParentId());
+			if(pCategory!=null&&pCategory.getAllParentId()!=null && !pCategory.getAllParentId().equals(""))
+			{
+				category.setAllParentId(pCategory.getAllParentId()+","+pCategory.getId());
+			}
+			else{
+				category.setAllParentId("BASE");
+			}
+			
 		}
 		
-	}
-	
-	categoryDaoImp.updCategory(category);
+		categoryDaoImp.updCategory(category);
 		return true;
 	}
 
